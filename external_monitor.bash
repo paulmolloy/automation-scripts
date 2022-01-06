@@ -1,11 +1,17 @@
+#!/bin/bash
 #xrandr --output DP-1-1 --scale 2x2 --mode 1920x1080 --fb 3840x2160 --pos 0x0
 
 GPU=$(prime-select query)
-if [ "$GPU" == "nvidia" ]
+
+if [[ $GPU == 'nvidia' ]];
 then 
     echo "Resize screen for Nvidia GPU"
     /bin/screen-automation-pablo/nvidia_external_monitor.bash
-
+elif  xrandr --current | grep -q 'DP1-8 connected';
+then
+    echo "Big screen set to primary"
+    xrandr --output DP1-8  --primary
+    xrandr --output eDP1 --off
 else
     echo "Resize screen for Intel GPU"
     xrandr --output DP-1 --scale 2x2 --mode 1920x1080 --fb 3840x2160 --pos 0x0
