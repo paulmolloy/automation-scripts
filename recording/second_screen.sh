@@ -9,5 +9,5 @@ dir=~/Videos/recordings/
 res_x=3840
 res_y=2160
 offset_x=$res_x
-ffmpeg -f x11grab -video_size ${res_x}x${res_y} -framerate 30 -i :0.0+${offset_x},0.0 -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor  -preset ultrafast -crf 18 -pix_fmt yuv420p $dir$f_name.mkv 
+ffmpeg -f  x11grab -video_size ${res_x}x${res_y} -framerate 30 -i :0.0+${offset_x},0.0 -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor  -preset ultrafast -crf 18 -pix_fmt yuv420p $dir$f_name.mkv 
 
